@@ -2,6 +2,8 @@
 
 The goal of this project is to explore how a lightly functional Vanilla JS project may look for a student of JS. 
 
+- This is only slightly functional. I really only did a little composition. I moreso considered immutable data and pure functions, but of course it isn't strict. I spent most of my time considering how to organize my code, since organziation is a little more apparent and clear when utilizing OOP, but not so clear in FP. 
+
 ## Notes:
 
 My understanding and implementation of ‘functional’:

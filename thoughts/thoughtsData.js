@@ -1,4 +1,4 @@
-import { pipe } from './helpers.js';
+import { pipe } from '../helpers.js';
 
 // could be cool to do some kind of revealing module pattern thing with global data
 // or could be cool to do a redux-y pattern

@@ -1,7 +1,7 @@
-import { getThoughts } from './thoughtsData.js';
+import { getThoughts } from './thoughts/thoughtsData.js';
 import { thoughtUL } from './domHelpers.js';
-import { renderThoughts } from './thoughtsDOM.js';
-import { saveThought, toggleFavoriteThought, deleteThought } from './thoughtsData.js';
+import { renderThoughts } from './thoughts/thoughtsDom.js';
+import { saveThought, toggleFavoriteThought, deleteThought } from './thoughts/thoughtsData.js';
 import './styles.css';
 
 const createClickHandler = (element) => {
@@ -35,3 +35,7 @@ createClickHandler(thoughtUL)((e) => {
 });
 
 renderThoughts(getThoughts());
+
+// TODO: not reorder list items when favoriting
+// TODO: move handlers to appropriate dom file
+// TODO: restructure further to adhere to functional agenda

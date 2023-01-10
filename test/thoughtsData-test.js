@@ -8,7 +8,7 @@ import {
   findThought,
   deleteThought,
   thoughts,
-} from '../thoughtsData.js';
+} from '../thoughts/thoughtsData.js';
 
 describe('thought data functionality', () => {
 

@@ -1,5 +1,5 @@
-import { addToDOM, thoughtUL } from './domHelpers.js';
-import { pipe } from './helpers.js';
+import { addToDOM, thoughtUL } from '../domHelpers.js';
+import { pipe } from '../helpers.js';
 
 export const createThought = (thought) => {
   return `<li id="${thought.thought}">
