@@ -11,27 +11,34 @@ export let thoughts = [
   }
 ];
 
-// have to do this because of exports being stale /shrug
 export const getThoughts = () => {
   return thoughts;
 }
 
 export const rewriteThoughts = (newThoughts) => {
+  console.log(newThoughts);
   thoughts = newThoughts;
 }
 
 export const addNewThoughtToCopy = (newThought) => {
-  // how to make this function only do one thing but also only
-  // take one argument? 
-  const copiedThoughts = copyThoughts();
-  copiedThoughts.push({ thought: newThought, starred: false, comments: [] });
-  return copiedThoughts;
+  return (copies) => {
+    copies.push(newThought);
+    return copies;
+  }
 }
 
-export const copyThoughts = () => {
-  return [...thoughts];
+export const copyThoughts = (thoughtText) => {
+  return [...thoughts].filter((thought) => thought.thought !== thoughtText);
 }
 
 export const saveThought = (thought) => {
-  pipe(rewriteThoughts, addNewThoughtToCopy)(thought);
+  const pushThought = addNewThoughtToCopy({ thought: thought, starred: false, comments: [] });
+  pipe(rewriteThoughts, pushThought)(copyThoughts());
+}
+
+export const toggleFavoriteThought = (thoughtText) => {
+  const foundThought = {...thoughts.find((thought) => thought.thought === thoughtText)};
+  foundThought.starred = !foundThought.starred;
+  const pushThought = addNewThoughtToCopy(foundThought);
+  pipe(rewriteThoughts, pushThought)(copyThoughts(thoughtText));
 }

@@ -1,13 +1,13 @@
 import { addToDOM, thoughtUL } from './domHelpers.js';
 import { pipe } from './helpers.js';
 
-export const createThought = (text) => {
-  return `<li>
+export const createThought = (thought) => {
+  return `<li id="${thought.thought}">
     <div class="star-x-container">
-      <span id="star">✰</span>
+      <span id="star" class="${thought.starred ? 'favorite' : null }">✰</span>
       <span id="x">✕</span>
     </div>
-    <p>${text}</p>
+    <p>${thought.thought}</p>
     <div class="comment-container">
       <span>Comments...</span>
     </div>
@@ -19,10 +19,10 @@ export const addToThoughtList = (content) => {
 }
 
 export const renderThoughts = (thoughts) => {
-  // search for other innerHTML comment for context on innerHTML
+  // search for other innerHTML comment for context on use of innerHTML
   thoughtUL.innerHTML = '';
   thoughts.forEach((thought) => {
-    pipe(addToThoughtList, createThought)(thought.thought);
+    pipe(addToThoughtList, createThought)(thought);
   })
 }
 
