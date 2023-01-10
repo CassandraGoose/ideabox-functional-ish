@@ -1,14 +1,18 @@
 import { assert } from 'chai';
 import {
-  thoughts,
   getThoughts,
-  rewriteThoughts,
   addNewThoughtToCopy,
   copyThoughts,
   saveThought,
+  toggleFavoriteThought, 
+  findThought,
+  deleteThought,
+  thoughts,
 } from '../thoughtsData.js';
 
 describe('thought data functionality', () => {
+
+  //   I am not sure how to avoid utilizing the original thoughts array.
 
   it('should start with data', () => {
     assert.deepEqual(thoughts, [
@@ -31,7 +35,15 @@ describe('thought data functionality', () => {
   });
 
   it('should add new thoughts to the copy in prep for rewriting the data', () => {
-    assert.deepEqual(addNewThoughtToCopy('hi'), [
+    assert.deepEqual(addNewThoughtToCopy({ 
+      thought: 'hi',
+      starred: false,
+      comments: [],
+    })([ {
+      thought: 'I should buy a boat',
+      starred: false,
+      comments: [],
+    }]), [
       {
         thought: 'I should buy a boat',
         starred: false,
@@ -70,4 +82,31 @@ describe('thought data functionality', () => {
       }
     ]);
   });
+
+  it('should favorite a thought', () => {
+    assert.deepEqual(toggleFavoriteThought('I should buy a boat'), undefined);
+    assert.deepEqual(thoughts, [
+      { thought: 'hi', starred: false, comments: [] },
+      { thought: 'I should buy a boat', starred: true, comments: [] }
+    ]);
+  });
+
+  it('should untoggle a thought', () => {
+    assert.deepEqual(toggleFavoriteThought('I should buy a boat'), undefined);
+    assert.deepEqual(thoughts, [
+      { thought: 'hi', starred: false, comments: [] },
+      { thought: 'I should buy a boat', starred: false, comments: [] }
+    ]);
+  });
+
+  it('should delete a thought', () => {
+    assert.deepEqual(deleteThought('I should buy a boat'), undefined);
+    assert.deepEqual(thoughts, [
+      { thought: 'hi', starred: false, comments: [] },
+    ]);
+  });
+
+  it('should find a thought', () => {
+    assert.deepEqual(findThought('hi'), { thought: 'hi', starred: false, comments: [] });
+  })
 });
