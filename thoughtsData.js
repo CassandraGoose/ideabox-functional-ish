@@ -15,14 +15,18 @@ export const getThoughts = () => {
   return thoughts;
 }
 
+export const findThought = (thoughtText) => {
+  return {...thoughts.find((thought) => thought.thought === thoughtText)};
+}
+
 export const rewriteThoughts = (newThoughts) => {
-  console.log(newThoughts);
   thoughts = newThoughts;
 }
 
 export const addNewThoughtToCopy = (newThought) => {
+  
   return (copies) => {
-    copies.push(newThought);
+    if (newThought) copies.push(newThought);
     return copies;
   }
 }
@@ -32,13 +36,19 @@ export const copyThoughts = (thoughtText) => {
 }
 
 export const saveThought = (thought) => {
+  if (thoughts.some((singleThought) => singleThought.thought === thought)) return;
   const pushThought = addNewThoughtToCopy({ thought: thought, starred: false, comments: [] });
   pipe(rewriteThoughts, pushThought)(copyThoughts());
 }
 
 export const toggleFavoriteThought = (thoughtText) => {
-  const foundThought = {...thoughts.find((thought) => thought.thought === thoughtText)};
+  const foundThought = findThought(thoughtText);
   foundThought.starred = !foundThought.starred;
   const pushThought = addNewThoughtToCopy(foundThought);
   pipe(rewriteThoughts, pushThought)(copyThoughts(thoughtText));
+}
+
+export const deleteThought = (thoughtText) => {
+  const foundThought = findThought(thoughtText);
+  pipe(rewriteThoughts, addNewThoughtToCopy())(copyThoughts(foundThought.thought));
 }

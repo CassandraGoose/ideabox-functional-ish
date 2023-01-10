@@ -1,7 +1,7 @@
 import { getThoughts } from './thoughtsData.js';
 import { thoughtUL } from './domHelpers.js';
 import { renderThoughts } from './thoughtsDOM.js';
-import { saveThought, toggleFavoriteThought } from './thoughtsData.js';
+import { saveThought, toggleFavoriteThought, deleteThought } from './thoughtsData.js';
 import './styles.css';
 
 // how make this only accept one argument? or lay all this out differently to allow for that style?
@@ -21,14 +21,15 @@ const handleToggleFavoriteThought = (thoughtText) => {
   renderThoughts(getThoughts());
 }
 
-const deleteThought = () => {
-  console.log('deleteTHought');
+const handleDeleteThought = (thoughtText) => {
+  deleteThought(thoughtText)
+  renderThoughts(getThoughts());
 }
 
 createClickHandler(document.querySelector('#saveThought'), saveThoughtHandler);
 
 createClickHandler(thoughtUL, (e) => {
-  if (e.target.id === 'x') deleteThought();
+  if (e.target.id === 'x') handleDeleteThought(e.target.closest('li').id);
   if (e.target.id === 'star') handleToggleFavoriteThought(e.target.closest('li').id);
 })
 
