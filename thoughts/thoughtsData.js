@@ -31,7 +31,7 @@ export const addNewThoughtToCopy = (newThought) => {
 };
 
 export const copyThoughts = (thoughtText) => {
-  return [...getThoughts()].filter((thought) => thought.thought !== thoughtText);
+  return getThoughts().filter((thought) => thought.thought !== thoughtText);
 };
 
 // I get that it's probably cooler/better to just have some wild, curried up function such as
