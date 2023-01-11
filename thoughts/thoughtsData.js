@@ -42,11 +42,13 @@ export const saveThought = (thought) => {
 }
 
 export const toggleFavoriteThought = (thoughtText) => {
-  const foundThought = findThought(thoughtText);
-  foundThought.starred = !foundThought.starred;
-  const pushThought = addNewThoughtToCopy(foundThought);
-  pipe(rewriteThoughts, pushThought)(copyThoughts(thoughtText));
-}
+  const updateThoughts = thoughts.map((thought) => {
+    if (thought.thought === thoughtText) return { ...thought, starred: !thought.starred };
+    return thought;
+  });
+  const pushThought = addNewThoughtToCopy();
+  pipe(rewriteThoughts, pushThought)(updateThoughts);
+};
 
 export const deleteThought = (thoughtText) => {
   const foundThought = findThought(thoughtText);
