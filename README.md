@@ -34,7 +34,7 @@ With all that stated above, I don't think it's reasonable to ask an early studen
 
 Looking through your code, [where] were you able to:
 - Make use of Pure Functions?
-  - I didn't use pure functions in some of my `thoughtsData.js` function, but I would like to refactor that... I just ran out of time with Covid. I think this would be important for a FP project and this is really the perfect spot to practice it.
+  - I didn't use pure functions in some of my `thoughtsData.js` function, but I would like to refactor that... I just ran out of time with Covid. I'm not sure it's possible for a couple of these....
 
   - Most of my functions in `thoughtsDOM.js` are not pure because they're updating the DOM. 
 
@@ -58,4 +58,4 @@ Looking through your code, [where] were you able to:
 
   - I think it's reasonable. I can't think off the top of my head if there's anywhere outside of this file that is updating the state.
 
-  - One thing I'd like to change here is that I'd like the state to be passed through to each function, so that it's pure! Currently, these functions are not pure. 
+  - One thing I'd like to change here is that I'd like the state to be passed through to each function, so that it's pure! Currently, these functions rely on getThoughts and while I think that's pure...I'm not actually sure. 
