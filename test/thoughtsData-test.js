@@ -86,16 +86,16 @@ describe('thought data functionality', () => {
   it('should favorite a thought', () => {
     assert.deepEqual(toggleFavoriteThought('I should buy a boat'), undefined);
     assert.deepEqual(thoughts, [
-      { thought: 'hi', starred: false, comments: [] },
-      { thought: 'I should buy a boat', starred: true, comments: [] }
+      { thought: 'I should buy a boat', starred: true, comments: [] },
+      { thought: 'hi', starred: false, comments: [] }
     ]);
   });
 
   it('should untoggle a thought', () => {
     assert.deepEqual(toggleFavoriteThought('I should buy a boat'), undefined);
     assert.deepEqual(thoughts, [
-      { thought: 'hi', starred: false, comments: [] },
-      { thought: 'I should buy a boat', starred: false, comments: [] }
+      { thought: 'I should buy a boat', starred: false, comments: [] },
+      { thought: 'hi', starred: false, comments: [] }
     ]);
   });
 

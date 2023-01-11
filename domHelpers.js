@@ -7,3 +7,9 @@ export const addToDOM = (destination) => {
     destination.innerHTML += content;
   }
 }
+
+export const createClickHandler = (element) => {
+  return (handler) => {
+    return element.addEventListener('click', handler);
+  }
+}

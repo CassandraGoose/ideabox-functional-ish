@@ -35,6 +35,20 @@ export const copyThoughts = (thoughtText) => {
   return [...thoughts].filter((thought) => thought.thought !== thoughtText);
 }
 
+// I get that it's probably cooler/better to just have some wild, curried up function such as 
+// ```
+// export const updateThought = (thoughts) => {
+//   return (index) => {
+//     return (updateFn) => {
+//       const copiedThoughts = [...thoughts];
+//       copiedThoughts[index] = updateFn(thoughts[index]);
+//       return [...copiedThoughts];
+//     };
+//   };
+// };
+// ```
+// but I just don't think it's as nice to read as these little pipes below...I'm guessing I need to dig in more to figure out how to make the code above more readable at glance 
+// i probably wouldn't ask students to pipe or deal with comnposition, i just wanted to test it out for funsies.
 export const saveThought = (thought) => {
   if (thoughts.some((singleThought) => singleThought.thought === thought)) return;
   const pushThought = addNewThoughtToCopy({ thought: thought, starred: false, comments: [] });
