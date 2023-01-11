@@ -5,6 +5,6 @@ import './styles.css';
 const init = () => {
   setupListeners();
   renderThoughts(getThoughts());
-}
+};
 
 init();

@@ -4,14 +4,13 @@ import {
   addNewThoughtToCopy,
   copyThoughts,
   saveThought,
-  toggleFavoriteThought, 
+  toggleFavoriteThought,
   findThought,
   deleteThought,
   thoughts,
 } from '../thoughts/thoughtsData.js';
 
 describe('thought data functionality', () => {
-
   //   I am not sure how to avoid utilizing the original thoughts array.
 
   it('should start with data', () => {
@@ -35,26 +34,31 @@ describe('thought data functionality', () => {
   });
 
   it('should add new thoughts to the copy in prep for rewriting the data', () => {
-    assert.deepEqual(addNewThoughtToCopy({ 
-      thought: 'hi',
-      starred: false,
-      comments: [],
-    })([ {
-      thought: 'I should buy a boat',
-      starred: false,
-      comments: [],
-    }]), [
-      {
-        thought: 'I should buy a boat',
-        starred: false,
-        comments: [],
-      },
-      { 
+    assert.deepEqual(
+      addNewThoughtToCopy({
         thought: 'hi',
         starred: false,
         comments: [],
-      }
-    ])
+      })([
+        {
+          thought: 'I should buy a boat',
+          starred: false,
+          comments: [],
+        },
+      ]),
+      [
+        {
+          thought: 'I should buy a boat',
+          starred: false,
+          comments: [],
+        },
+        {
+          thought: 'hi',
+          starred: false,
+          comments: [],
+        },
+      ]
+    );
   });
 
   it('should copy thoughts in preparation for overwriting the data', () => {
@@ -75,11 +79,11 @@ describe('thought data functionality', () => {
         starred: false,
         comments: [],
       },
-      { 
+      {
         thought: 'hi',
         starred: false,
         comments: [],
-      }
+      },
     ]);
   });
 
@@ -87,7 +91,7 @@ describe('thought data functionality', () => {
     assert.deepEqual(toggleFavoriteThought('I should buy a boat'), undefined);
     assert.deepEqual(thoughts, [
       { thought: 'I should buy a boat', starred: true, comments: [] },
-      { thought: 'hi', starred: false, comments: [] }
+      { thought: 'hi', starred: false, comments: [] },
     ]);
   });
 
@@ -95,7 +99,7 @@ describe('thought data functionality', () => {
     assert.deepEqual(toggleFavoriteThought('I should buy a boat'), undefined);
     assert.deepEqual(thoughts, [
       { thought: 'I should buy a boat', starred: false, comments: [] },
-      { thought: 'hi', starred: false, comments: [] }
+      { thought: 'hi', starred: false, comments: [] },
     ]);
   });
 
@@ -107,6 +111,10 @@ describe('thought data functionality', () => {
   });
 
   it('should find a thought', () => {
-    assert.deepEqual(findThought('hi'), { thought: 'hi', starred: false, comments: [] });
-  })
+    assert.deepEqual(findThought('hi'), {
+      thought: 'hi',
+      starred: false,
+      comments: [],
+    });
+  });
 });
